@@ -1,5 +1,5 @@
 {
-    "name": "hts/recaptcha",
+    "name": "htsr/recaptcha",
     "description": "Google reCaptcha integration for Magento2",
     "require": {
         "php": "^7.0|^7.1",
