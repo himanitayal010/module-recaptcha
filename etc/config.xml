@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_ReCaptcha
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <hts_security_recaptcha>
+            <backend>
+                <enabled>0</enabled>
+                <size>normal</size>
+                <theme>light</theme>
+            </backend>
+            <frontend>
+                <enabled>0</enabled>
+                <size>normal</size>
+                <type>standard</type>
+                <position>inline</position>
+                <theme>light</theme>
+                <lang></lang>
+                <enabled_login>1</enabled_login>
+                <enabled_forgot>1</enabled_forgot>
+                <enabled_contact>1</enabled_contact>
+                <enabled_create>1</enabled_create>
+            </frontend>
+        </hts_security_recaptcha>
+    </default>
+</config>

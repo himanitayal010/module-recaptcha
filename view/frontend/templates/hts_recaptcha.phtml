@@ -1,0 +1,23 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_ReCaptcha
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+
+/** @var $block Hts\ReCaptcha\Block\Frontend\ReCaptcha */
+?>
+<div class="field-recaptcha" id="hts-recaptcha-container" data-bind="scope:'hts-recaptcha'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#hts-recaptcha-container": {
+        "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>
+    }
+}
+</script>

@@ -1,0 +1,20 @@
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_ReCaptcha
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<!-- ko if: (getIsVisible()) -->
+<div data-bind="{
+    attr: {
+        'id': getReCaptchaId() + '-wrapper'
+    },
+    'afterRender': renderReCaptcha()
+}">
+    <div class="g-recaptcha" ></div>
+</div>
+<!-- /ko -->

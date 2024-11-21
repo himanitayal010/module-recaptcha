@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_ReCaptcha
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Hts\ReCaptcha\Api\ValidateInterface" type="Hts\ReCaptcha\Model\Validate"/>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="hts_recaptcha" xsi:type="object">Hts\ReCaptcha\Command\ReCaptcha</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Asset\Minification">
+        <plugin name="hts-exclude" type="Hts\ReCaptcha\Plugin\ExcludeFromMinification"/>
+    </type>
+
+    <!-- Default HTTP response provider -->
+    <preference for="Hts\ReCaptcha\Model\Provider\ResponseProviderInterface"
+                type="Hts\ReCaptcha\Model\Provider\Response\DefaultResponseProvider"/>
+
+    <preference for="Hts\ReCaptcha\Model\IsCheckRequiredInterface"
+                type="Hts\ReCaptcha\Model\IsCheckRequired"/>
+
+    <!-- Set sensitive information -->
+    <type name="Magento\Config\Model\Config\TypePool">
+        <arguments>
+            <argument name="sensitive" xsi:type="array">
+                <item name="hts_security_recaptcha/general/public_key" xsi:type="string">1</item>
+                <item name="hts_security_recaptcha/general/private_key" xsi:type="string">1</item>
+            </argument>
+            <argument name="environment" xsi:type="array">
+                <item name="hts_security_recaptcha/general/public_key" xsi:type="string">1</item>
+                <item name="hts_security_recaptcha/general/private_key" xsi:type="string">1</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

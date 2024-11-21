@@ -1,0 +1,21 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_ReCaptcha
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+
+/** @var $block Hts\ReCaptcha\Block\Adminhtml\ReCaptcha */
+?>
+<?php if ($block->canDisplayCaptcha()) : ?>
+<div class="admin__field field-recaptcha">
+    <div class="g-recaptcha"
+         data-sitekey="<?php echo $block->getPublicKey() ?>"
+         data-size="<?php echo $block->getSize() ?>"
+         data-theme="<?php echo $block->getTheme() ?>"
+    ></div>
+</div>
+<?php endif; ?>

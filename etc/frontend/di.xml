@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_ReCaptcha
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="hts_recaptcha" xsi:type="object">\Hts\ReCaptcha\Block\LayoutProcessor\Checkout\Onepage</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- User login -->
+    <virtualType name="Hts\ReCaptcha\Model\Provider\Failure\LoginObserver"
+                 type="Hts\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
+        <arguments>
+            <argument name="redirectUrlProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\BeforeAuthUrlProvider</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\Login"
+                 type="Hts\ReCaptcha\Model\IsCheckRequired">
+        <arguments>
+            <argument name="enableConfigFlag"
+                      xsi:type="string">hts_security_recaptcha/frontend/enabled_login</argument>
+            <argument name="area" xsi:type="string">frontend</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Observer\Frontend\LoginObserver"
+                 type="Hts\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\Login</argument>
+            <argument name="failureProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\LoginObserver</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Forgot password -->
+    <virtualType name="Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\ForgotPassword"
+                 type="Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\SimpleUrlProvider">
+        <arguments>
+            <argument name="urlPath" xsi:type="string">*/*/forgotpassword</argument>
+            <argument name="urlParams" xsi:type="array">
+                <item name="_secure" xsi:type="boolean">true</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Model\Provider\Failure\ForgotPasswordObserver"
+                 type="Hts\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
+        <arguments>
+            <argument name="redirectUrlProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\ForgotPassword</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\ForgotPassword"
+                 type="Hts\ReCaptcha\Model\IsCheckRequired">
+        <arguments>
+            <argument name="enableConfigFlag"
+                      xsi:type="string">hts_security_recaptcha/frontend/enabled_forgot</argument>
+            <argument name="area" xsi:type="string">frontend</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Observer\Frontend\ForgotPasswordObserver"
+                 type="Hts\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\ForgotPassword</argument>
+            <argument name="failureProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\ForgotPasswordObserver</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Create User -->
+    <virtualType name="Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\CreateUser"
+                 type="Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\SimpleUrlProvider">
+        <arguments>
+            <argument name="urlPath" xsi:type="string">*/*/create</argument>
+            <argument name="urlParams" xsi:type="array">
+                <item name="_secure" xsi:type="boolean">true</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Model\Provider\Failure\CreateUserObserver"
+                 type="Hts\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
+        <arguments>
+            <argument name="redirectUrlProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\CreateUser</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\CreateUser"
+                 type="Hts\ReCaptcha\Model\IsCheckRequired">
+        <arguments>
+            <argument name="enableConfigFlag"
+                      xsi:type="string">hts_security_recaptcha/frontend/enabled_create</argument>
+            <argument name="area" xsi:type="string">frontend</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Observer\Frontend\CreateUserObserver"
+                 type="Hts\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\CreateUser</argument>
+            <argument name="failureProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\CreateUserObserver</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Contact Form -->
+    <virtualType name="Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\ContactForm"
+                 type="Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\SimpleUrlProvider">
+        <arguments>
+            <argument name="urlPath" xsi:type="string">contact/index/index</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Model\Provider\Failure\ContactFormObserver"
+                 type="Hts\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
+        <arguments>
+            <argument name="redirectUrlProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\RedirectUrl\ContactForm</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\ContactForm"
+                 type="Hts\ReCaptcha\Model\IsCheckRequired">
+        <arguments>
+            <argument name="enableConfigFlag"
+                      xsi:type="string">hts_security_recaptcha/frontend/enabled_contact</argument>
+            <argument name="area" xsi:type="string">frontend</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hts\ReCaptcha\Observer\Frontend\ContactFormObserver"
+                 type="Hts\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\ContactForm</argument>
+            <argument name="failureProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\ContactFormObserver</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- AjaxLogin Form -->
+    <virtualType name="Hts\ReCaptcha\Observer\Frontend\AjaxLoginObserver"
+                 type="Hts\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\Login</argument>
+            <argument name="responseProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Response\AjaxResponseProvider</argument>
+            <argument name="failureProvider"
+                      xsi:type="object">Hts\ReCaptcha\Model\Provider\Failure\AjaxResponseFailure</argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magento\Customer\Block\Account\AuthenticationPopup">
+        <plugin sortOrder="1" name="htsReCaptchaAuthenticationPopup"
+                type="Hts\ReCaptcha\Plugin\Block\Account\AuthenticationPopupPlugin"/>
+    </type>
+</config>

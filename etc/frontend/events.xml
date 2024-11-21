@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_ReCaptcha
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="controller_action_predispatch_customer_account_loginPost">
+        <observer name="hts_captcha" instance="Hts\ReCaptcha\Observer\Frontend\LoginObserver" />
+    </event>
+    <event name="controller_action_predispatch_customer_ajax_login">
+        <observer name="hts_captcha" instance="Hts\ReCaptcha\Observer\Frontend\AjaxLoginObserver" />
+    </event>
+    <event name="controller_action_predispatch_customer_account_createpost">
+        <observer name="hts_captcha" instance="Hts\ReCaptcha\Observer\Frontend\CreateUserObserver" />
+    </event>
+    <event name="controller_action_predispatch_customer_account_forgotpasswordpost">
+        <observer name="hts_captcha" instance="Hts\ReCaptcha\Observer\Frontend\ForgotPasswordObserver"/>
+    </event>
+    <event name="controller_action_predispatch_contact_index_post">
+        <observer name="hts_captcha" instance="Hts\ReCaptcha\Observer\Frontend\ContactFormObserver" />
+    </event>
+</config>
