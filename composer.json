@@ -3,7 +3,7 @@
     "description": "Google reCaptcha integration for Magento2",
     "require": {
         "php": "^8.0|^8.1|^8.2",
-        "htsr/security": "^1.0",
+        "htsr/security": "dev-main",
         "magento/magento-composer-installer": "*",
         "google/recaptcha": "^1.1"
     },
